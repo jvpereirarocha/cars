@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
+from cars.models import Vehicle
+
+
+class VehicleListView(ListView):
+    model = Vehicle
+    template_name = "vehicles/list_of_vehicles.html"
+    context_object_name = "vehicles"
