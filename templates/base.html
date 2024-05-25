@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {% endblock %}</title>
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Import materialize.css -->
+  <link type="text/css" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Let browser know website is optimized for mobile -->
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="container" style="margin-left: 250px;">
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+      <li><a href="#!" class="brand-logo">Lista de veículos</a></li>
+      <li><a href="#!"><i class="fas fa-home"></i>Página inicial</a></li>
+      <li>
+        <a class="dropdown-trigger" href="#!" data-target="carsDropdown">
+          <i class="fas fa-car"></i>Veículos<i class="material-icons right">arrow_drop_down</i>
+        </a>
+      </li>
+      <ul id="carsDropdown" class="dropdown-content">
+        <li><a href="#!">Criar/Editar</a></li>
+        <li><a href="#!">Listagem</a></li>
+      </ul>
+      <li><a href="#!"><i class="fas fa-chart-bar"></i>Relatórios</a></li>
+      <li>
+        <a href="#!" id="loginLogoutLink">
+          <i class="fas fa-sign-in-alt" id="loginLogoutIcon"></i>
+          <span id="loginLogoutText">Login</span>
+        </a>
+      </li>
+    </ul>
+    {% block content %}{% endblock %}
+  </div>
+  
+  <!-- Import jQuery before materialize.js -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elemsSidenav = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elemsSidenav);
+
+      var elemsDropdown = document.querySelectorAll('.dropdown-trigger');
+      M.Dropdown.init(elemsDropdown, {
+        coverTrigger: false,
+        constrainWidth: false
+      });
+
+      // Example login/logout toggle functionality
+      var loggedIn = false; // Change this based on your login logic
+      var loginLogoutLink = document.getElementById('loginLogoutLink');
+      var loginLogoutIcon = document.getElementById('loginLogoutIcon');
+      var loginLogoutText = document.getElementById('loginLogoutText');
+
+      if (loggedIn) {
+        loginLogoutIcon.classList.replace('fa-sign-in-alt', 'fa-sign-out-alt');
+        loginLogoutText.textContent = 'Logout';
+      } else {
+        loginLogoutIcon.classList.replace('fa-sign-out-alt', 'fa-sign-in-alt');
+        loginLogoutText.textContent = 'Login';
+      }
+    });
+  </script>
+</body>

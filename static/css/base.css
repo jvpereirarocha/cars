@@ -1,0 +1,13 @@
+.card-content .car-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.car-image {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card-action a {
+    color: #1976d2;
+}
