@@ -1,0 +1,56 @@
+{% load static %}
+
+<body>
+  <ul id="slide-out" class="sidenav sidenav-fixed">
+    <li class="brand-logo">Veículos</li>
+    <li><a href="#!"><i class="fas fa-home"></i>Página inicial</a></li>
+    <li>
+      <a class="dropdown-trigger" href="#!" data-target="carsDropdown">
+        <i class="fas fa-car"></i>Veículos<i class="material-icons right">arrow_drop_down</i>
+      </a>
+    </li>
+    <ul id="carsDropdown" class="dropdown-content">
+      <li><a href="#!">Criar/Editar</a></li>
+      <li><a href="{% url 'cars:vehicles_list' %}">Listagem</a></li>
+    </ul>
+    <li>
+      {% if user.is_authenticated %}
+      <a href="#!" id="loginLink">
+        <i class="fas fa-sign-out" id="logoutIcon"></i>
+        <span id="logoutLink">Logout</span>
+      </a>
+      {% else %}
+      <a href="#!" id="logoutLink">
+        <i class="fas fa-sign-in-alt" id="loginIcon"></i>
+        <span id="loginLink">Login</span>
+      </a>
+      {% endif %}
+    </li>
+  </ul>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elemsSidenav = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elemsSidenav);
+
+      var elemsDropdown = document.querySelectorAll('.dropdown-trigger');
+      M.Dropdown.init(elemsDropdown, {
+        coverTrigger: false,
+        constrainWidth: false
+      });
+
+      // Example login/logout toggle functionality
+      var loggedIn = false; // Change this based on your login logic
+      var loginLogoutLink = document.getElementById('loginLogoutLink');
+      var loginLogoutIcon = document.getElementById('loginLogoutIcon');
+      var loginLogoutText = document.getElementById('loginLogoutText');
+
+      if (loggedIn) {
+        loginLogoutIcon.classList.replace('fa-sign-in-alt', 'fa-sign-out-alt');
+        loginLogoutText.textContent = 'Logout';
+      } else {
+        loginLogoutIcon.classList.replace('fa-sign-out-alt', 'fa-sign-in-alt');
+        loginLogoutText.textContent = 'Login';
+      }
+    });
+  </script>
+</body>

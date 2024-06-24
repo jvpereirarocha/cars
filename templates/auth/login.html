@@ -1,0 +1,18 @@
+{% extends '../base_without_sidebar.html' %}
+
+{% block title %} Fazer login {% endblock %}
+{% load static %}
+
+{% block content %}
+  <form action="{% url 'cars:vehicles_list' %}" method="post">
+    <div class="mb-3">
+      <label for="emailLogin" class="form-label">E-mail</label>
+      <input type="email" class="form-control" id="emailLogin">
+    </div>
+    <div class="mb-3">
+      <label for="passwordLogin" class="form-label">Senha</label>
+      <input type="password" class="form-control" id="passwordLogin">
+    </div>
+    <button type="submit" class="btn btn-primary">Fazer login</button>
+  </form>
+{% endblock %}
